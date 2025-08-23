@@ -16,6 +16,7 @@
  */
 
 import vite from '@adonisjs/vite/services/main'
+import { Html } from '@kitajs/html'
 
 function Image(props: { src: string; alt?: string; class?: string }) {
   const url = vite.assetPath(props.src)

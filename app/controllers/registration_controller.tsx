@@ -1,12 +1,13 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { errors } from '@adonisjs/auth'
-import hash from '@adonisjs/core/services/hash'
 import User from '#models/user'
 import { Signup } from '#views/signup'
+import { FlashMessages } from '#types/session'
 
 export default class RegistrationController {
-  async show({ }: HttpContext) {
-    return <Signup />
+  async show({ session }: HttpContext) {
+    const flashMessages: FlashMessages = session.flashMessages.all()
+    return <Signup flashMessages={flashMessages} />
   }
 
   async store({ auth, request, response }: HttpContext) {
@@ -17,13 +18,11 @@ export default class RegistrationController {
       throw new errors.E_INVALID_CREDENTIALS('Missing some details')
     }
 
-    // 2. Hash the password ready to store it
-    const hashedPassword = await hash.make(password)
-
-    // 3. Create the user in the db. Throw an error if a user with this email already exists
+    // 2. Create the user in the db. The withAuthFinder mixin will automatically hash the password
     let newUser: User
+    console.log(`User entered: "${password}"`)
     try {
-      newUser = await User.create({ email, fullName, password: hashedPassword })
+      newUser = await User.create({ email, fullName, password })
 
     } catch (error) {
       throw new errors.E_INVALID_CREDENTIALS('Error creating account')

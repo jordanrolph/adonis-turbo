@@ -1,19 +1,18 @@
-import { csrfField } from '#helpers/csrf_field_helper'
 import { route } from '#helpers/route_helper'
+import { csrfField } from '#helpers/csrf_field_helper'
+// import { inspect } from '#helpers/inspect_helper'
+import { FlashMessages } from '#types/session'
 
-interface LoginProps { }
+interface LoginProps {
+    flashMessages: FlashMessages
+}
 
-export function Login({ }: LoginProps) {
+export function Login({ flashMessages }: LoginProps) {
+    const { errorsBag } = flashMessages
     return (
         <>
-            {/* @flashMessage('errorsBag')
-      @each(error in $message)
-        <p>
-          {{ error }}
-        </p>
-      @end
-    @end */}
-
+            {/* {inspect(flashMessages)} */}
+            <p>{errorsBag?.E_INVALID_CREDENTIALS || ''}</p>
             <form action={route('auth.login.store')} method="post">
                 {csrfField()}
                 <div>

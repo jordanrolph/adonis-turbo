@@ -1,12 +1,13 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { errors } from '@adonisjs/auth'
-import hash from '@adonisjs/core/services/hash'
 import User from '#models/user'
 import { Login } from '#views/login'
+import { FlashMessages } from '#types/session'
 
 export default class SessionController {
-    async show({ }: HttpContext) {
-        return <Login />
+    async show({ session }: HttpContext) {
+        const flashMessages: FlashMessages = session.flashMessages.all()
+        return <Login flashMessages={flashMessages} />
     }
 
     async store({ auth, request, response }: HttpContext) {
@@ -16,22 +17,13 @@ export default class SessionController {
             throw new errors.E_INVALID_CREDENTIALS('Invalid credentials')
         }
 
-        // 2. Attempt to find the user by their email address
-        const user = await User.query().where("email", email).firstOrFail()
+        // 2. Verify credentials using the AuthFinder mixin method
+        // In case of invalid credentials, the `verifyCredentials` method will
+        // automatically throw E_INVALID_CREDENTIALS exception.
+        // Docs: https://docs.adonisjs.com/guides/authentication/verifying-user-credentials#verifying-credentials
+        const user = await User.verifyCredentials(email, password)
 
-        // TODO: Check if firstOrFail gives the correct error response, else
-        // throw the error manually
-        // if (!user) {
-        //     throw new errors.E_INVALID_CREDENTIALS('Invalid credentials')
-        // }
-
-        // 3. Check the password is correct
-        const hasValidPassword = await hash.verify(user.password, password)
-        if (!hasValidPassword) {
-            throw new errors.E_INVALID_CREDENTIALS('Invalid credentials')
-        }
-
-        // 4. Finally, log in the user and redirect them to the homepage
+        // 3. Finally, log in the user and redirect them to the homepage
         await auth.use('web').login(user)
         return response.redirect().toRoute('home')
     }
