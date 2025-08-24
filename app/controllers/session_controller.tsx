@@ -1,9 +1,9 @@
 import { HttpContext } from '@adonisjs/core/http'
-import { errors } from '@adonisjs/auth'
 import User from '#models/user'
 import { Login } from '#views/login'
 import type { FlashMessages } from '#types/session'
 import { DefaultLayout } from '#layouts/default_layout'
+import { loginValidator } from '#validators/session'
 
 export default class SessionController {
     async show({ session }: HttpContext) {
@@ -16,11 +16,9 @@ export default class SessionController {
     }
 
     async store({ auth, request, response }: HttpContext) {
-        // 1.  Validate input
-        const { email, password } = request.only(['email', 'password'])
-        if (!email || !password) {
-            throw new errors.E_INVALID_CREDENTIALS('Invalid credentials')
-        }
+        // 1. Validate the form submission
+        const payload = await request.validateUsing(loginValidator)
+        const { email, password } = payload;
 
         // 2. Verify credentials using the AuthFinder mixin method
         // In case of invalid credentials, the `verifyCredentials` method will

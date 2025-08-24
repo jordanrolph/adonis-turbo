@@ -4,6 +4,7 @@ import User from '#models/user'
 import { Signup } from '#views/signup'
 import type { FlashMessages } from '#types/session'
 import { DefaultLayout } from '#layouts/default_layout'
+import { signUpValidator } from '#validators/registration'
 
 export default class RegistrationController {
   async show({ session }: HttpContext) {
@@ -17,11 +18,8 @@ export default class RegistrationController {
 
   async store({ auth, request, response }: HttpContext) {
     // 1. Validate the form submission
-    const { email, password, fullName } = request.only(['email', 'password', 'fullName'])
-
-    if (!email || !password || !fullName) {
-      throw new errors.E_INVALID_CREDENTIALS('Missing some details')
-    }
+    const payload = await request.validateUsing(signUpValidator)
+    const { email, password, fullName } = payload;
 
     // 2. Create the user in the db. The withAuthFinder mixin will automatically hash the password
     let newUser: User
