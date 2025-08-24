@@ -32,6 +32,7 @@
     "#config/*": "./config/*.js",
     "#types/*": "./types/*.js",
     "#views/*": "./resources/views/pages/*.js",
+    "#layouts/*": "./resources/views/layouts/*.js",
     "#helpers/*": "./resources/views/helpers/*.js"
   },
   "devDependencies": {
