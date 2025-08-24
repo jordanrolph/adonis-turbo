@@ -41,10 +41,11 @@ button {
   font-size: 1rem;
   padding: 0.25rem 0.75rem;
   border: none;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 input {
+  display: block;
   border: 1px solid var(--color-border);
   margin-top: 0.25rem;
   margin-bottom: 1rem;
@@ -54,8 +55,11 @@ input {
 
 label {
   display: block;
+  margin-top: 1rem;
 }
 
 a {
   color: var(--color-accent);
+  display: block;
+  margin-top: 1rem;
 }

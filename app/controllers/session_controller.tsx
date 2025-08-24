@@ -1,13 +1,13 @@
 import { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import { Login } from '#views/login'
-import type { FlashMessages } from '#types/session'
 import { DefaultLayout } from '#layouts/default_layout'
 import { loginValidator } from '#validators/session'
+import { getFlashMessages } from '#controller_helpers/get_flash_messages'
 
 export default class SessionController {
     async show({ session }: HttpContext) {
-        const flashMessages: FlashMessages = session.flashMessages.all()
+        const flashMessages = getFlashMessages(session)
         return (
             <DefaultLayout pageTitle="Login">
                 <Login flashMessages={flashMessages} />

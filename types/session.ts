@@ -1,5 +1,3 @@
-import { HttpContext } from '@adonisjs/core/http'
-
 // Manually typed: AdonisJS types don't expose the specific structure of flash message data
 // This type is used to get better type hinting when displaying errors to the user in a view
 type ErrorsBag = {
@@ -12,6 +10,7 @@ type ErrorsBag = {
     E_OAUTH_MISSING_CODE?: string
     E_OAUTH_STATE_MISMATCH?: string
     E_UNAUTHORIZED_ACCESS?: string
+    E_VALIDATION_ERROR?: string
     E_INVALID_CREDENTIALS?: string
     E_CANNOT_LOOKUP_ROUTE?: string
     E_HTTP_EXCEPTION?: string
@@ -32,14 +31,19 @@ type ErrorsBag = {
     E_MAIL_TRANSPORT_ERROR?: string
     E_SESSION_NOT_MUTABLE?: string
     E_SESSION_NOT_READY?: string
-    // Common input error codes
-    email?: string
-    fullName?: string
     // Allow any other error codes
     [key: string]: string | undefined
 }
 
-// Can be accessed in a controller with `session.flashMessages.all()`
-export type FlashMessages = HttpContext['session']['flashMessages']['all'] & {
+// Validation errors from VineJS (field-specific errors)
+type ValidationErrors = Record<string, string[]>
+
+// "Old" form input value for a field-specific validation error
+type OldValues = Record<string, string>
+
+// Can be accessed in a controller with `getFlashMessages(session)`
+export type FlashMessages = {
     errorsBag?: ErrorsBag
+    errors?: ValidationErrors
+    oldValues?: OldValues
 }
