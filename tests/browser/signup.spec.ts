@@ -37,7 +37,7 @@ test.group('Signup', (group) => {
     await page.locator('input[name="password"]').fill(mockUserData.password)
 
     // Submit the form
-    await page.locator('button[type="submit"]').click()
+    await page.locator('button[type="submit"]:has-text("Sign up")').click()
 
     // Wait for navigation to complete
     await page.waitForURL('/')
@@ -78,7 +78,7 @@ test.group('Signup', (group) => {
     await page.locator('input[name="password"]').fill(similarUserData.password)
 
     // Submit the form
-    await page.locator('button[type="submit"]').click()
+    await page.locator('button[type="submit"]:has-text("Sign up")').click()
 
     // User should stay on the signup page with a flash message error message
     await page.waitForURL('/signup')
@@ -106,7 +106,7 @@ test.group('Signup', (group) => {
     await page.locator('input[name="email"]').fill('john@example.com')
     await page.locator('input[name="password"]').fill('password123')
     // fullName is intentionally not filled
-    await page.locator('button[type="submit"]').click()
+    await page.locator('button[type="submit"]:has-text("Sign up")').click()
 
     // User should stay on the signup page with a flash error message shown
     await page.waitForURL('/signup')
@@ -124,7 +124,7 @@ test.group('Signup', (group) => {
     await page.locator('input[name="fullName"]').fill('John Doe')
     await page.locator('input[name="password"]').fill('password123')
     // email is intentionally not filled
-    await page.locator('button[type="submit"]').click()
+    await page.locator('button[type="submit"]:has-text("Sign up")').click()
 
     // User should stay on the signup page with a flash error message shown
     await page.waitForURL('/signup')
@@ -144,7 +144,7 @@ test.group('Signup', (group) => {
     await page.locator('input[name="password"]').fill('password123')
 
     // Submit the form
-    await page.locator('button[type="submit"]').click()
+    await page.locator('button[type="submit"]:has-text("Sign up")').click()
 
     // User should stay on the signup page with a flash error message shown
     await page.waitForURL('/signup')
@@ -162,7 +162,7 @@ test.group('Signup', (group) => {
     await page.locator('input[name="fullName"]').fill('John Doe')
     await page.locator('input[name="email"]').fill('john@example.com')
     // password is intentionally not filled
-    await page.locator('button[type="submit"]').click()
+    await page.locator('button[type="submit"]:has-text("Sign up")').click()
 
     // User should stay on the signup page with a flash error message shown
     await page.waitForURL('/signup')
@@ -182,7 +182,7 @@ test.group('Signup', (group) => {
     await page.locator('input[name="password"]').fill('123') // too short
 
     // Submit the form
-    await page.locator('button[type="submit"]').click()
+    await page.locator('button[type="submit"]:has-text("Sign up")').click()
 
     // User should stay on the signup page with a flash error message shown
     await page.waitForURL('/signup')
