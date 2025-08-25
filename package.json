@@ -35,7 +35,8 @@
     "#types/*": "./types/*.js",
     "#views/*": "./resources/views/pages/*.js",
     "#layouts/*": "./resources/views/layouts/*.js",
-    "#helpers/*": "./resources/views/helpers/*.js"
+    "#helpers/*": "./resources/views/helpers/*.js",
+    "#components/*": "./resources/views/components/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
