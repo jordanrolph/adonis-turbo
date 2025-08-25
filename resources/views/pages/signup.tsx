@@ -7,12 +7,16 @@ interface SignupProps {
 }
 
 export function Signup({ flashMessages }: SignupProps) {
-    const { errors, oldValues } = flashMessages
+    const { errors, oldValues, errorsBag } = flashMessages
 
     return (
         <>
             <form action={route('auth.registration.store')} method="post">
                 {csrfField()}
+
+                {errorsBag?.E_INVALID_CREDENTIALS ?? (
+                    <p safe>{JSON.stringify(errorsBag?.E_INVALID_CREDENTIALS)}</p>
+                )}
 
                 <div>
                     <label for="fullName">Full Name</label>

@@ -9,7 +9,7 @@ import app from '@adonisjs/core/services/app'
  */
 export function inspect(value: any) {
     if (app.inDev) {
-        return <code>{ JSON.stringify(value, null) } </code>
+        return <code safe>{JSON.stringify(value, null)} </code>
     }
 
     return null
