@@ -8,11 +8,14 @@ interface LoginProps {
 }
 
 export function Login({ flashMessages }: LoginProps) {
-    const { errors, oldValues } = flashMessages
+    const { errors, oldValues, errorsBag } = flashMessages
 
     return (
         <>
-            {/* {inspect(flashMessages)} */}
+            {errorsBag?.E_INVALID_CREDENTIALS ?? (
+                <p safe>{errorsBag?.E_INVALID_CREDENTIALS}</p>
+            )}
+
             <form action={route('auth.login.store')} method="post">
                 {csrfField()}
                 <div>

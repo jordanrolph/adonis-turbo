@@ -11,12 +11,12 @@ export function Signup({ flashMessages }: SignupProps) {
 
     return (
         <>
+            {errorsBag?.E_INVALID_CREDENTIALS ?? (
+                <p safe>{errorsBag?.E_INVALID_CREDENTIALS}</p>
+            )}
+
             <form action={route('auth.registration.store')} method="post">
                 {csrfField()}
-
-                {errorsBag?.E_INVALID_CREDENTIALS ?? (
-                    <p safe>{JSON.stringify(errorsBag?.E_INVALID_CREDENTIALS)}</p>
-                )}
 
                 <div>
                     <label for="fullName">Full Name</label>
