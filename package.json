@@ -68,6 +68,8 @@
     "@adonisjs/shield": "^8.2.0",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^4.0.0",
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo": "^8.0.13",
     "@kitajs/html": "^4.2.9",
     "@kitajs/ts-html-plugin": "^4.1.2",
     "@vinejs/vine": "^3.0.1",
