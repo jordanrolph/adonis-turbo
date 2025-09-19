@@ -72,6 +72,7 @@
     "@kitajs/html": "^4.2.9",
     "@kitajs/ts-html-plugin": "^4.1.2",
     "@vinejs/vine": "^3.0.1",
+    "alpinejs": "^3.15.0",
     "better-sqlite3": "^12.2.0",
     "luxon": "^3.7.1",
     "reflect-metadata": "^0.2.2"
