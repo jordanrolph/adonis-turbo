@@ -16,8 +16,8 @@ const SessionController = () => import('#controllers/session_controller')
 const RegistrationController = () => import('#controllers/registration_controller')
 
 // Define the routes
-router.get('/', [HomeController, "show"]).use(middleware.auth()).as('home')
-router.post('/hotwire-example', [HomeController, 'hotwireExample']).use(middleware.auth()).as('home.hotwire-example')
+router.get('/', [HomeController, "show"]).use(middleware.auth()).as('home.show')
+router.get('/hotwire-example', [HomeController, 'hotwireExample']).use(middleware.auth()).as('home.hotwire-example')
 
 router.get('/login', [SessionController, 'show']).use(middleware.guest()).as('auth.login.show')
 router.post('/login', [SessionController, 'store']).as('auth.login.store')

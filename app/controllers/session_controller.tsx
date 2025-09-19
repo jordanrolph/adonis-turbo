@@ -28,7 +28,7 @@ export default class SessionController {
 
         // 3. Finally, log in the user and redirect them to the homepage
         await auth.use('web').login(user)
-        return response.redirect().toRoute('home')
+        return response.redirect().toRoute('home.show')
     }
 
     async destroy({ auth, response }: HttpContext) {

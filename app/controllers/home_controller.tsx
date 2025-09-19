@@ -2,6 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { Home } from '#views/home'
 import { DefaultLayout } from '#layouts/default_layout'
 import { route } from '#helpers/route_helper'
+import { csrfField } from '#helpers/csrf_field_helper'
 
 export default class HomeController {
     async show({ auth }: HttpContext) {
@@ -16,14 +17,14 @@ export default class HomeController {
 
     async hotwireExample({ request, response }: HttpContext) {
         if (request.isTurbo()) {
-            return response.turbo(
-                <turbo-stream action="replace" target="hotwire-example">
-                    <template>
-                        <p id="hotwire-example">
-                            Hello from Turbo {Date.now()}
-                        </p>
-                    </template>
-                </turbo-stream>
+
+            return response.turboFrame(
+                <turbo-frame id="hotwire-example">
+                    <p>Hello from turbo {Date.now()}</p>
+                    <a href={route('home.hotwire-example')}>
+                        Get Hotwire Turbo response
+                    </a>
+                </turbo-frame>
             )
         }
 

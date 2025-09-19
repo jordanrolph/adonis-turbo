@@ -42,6 +42,7 @@ button {
   padding: 0.25rem 0.75rem;
   border: none;
   margin-top: 1rem;
+  cursor: pointer;
 }
 
 input {
@@ -53,6 +54,10 @@ input {
   padding: 0.25rem;
 }
 
+input.error {
+  border-color: var(--color-accent);
+}
+
 label {
   display: block;
   margin-top: 1rem;
@@ -62,4 +67,12 @@ a {
   color: var(--color-accent);
   display: block;
   margin-top: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.error {
+  color: var(--color-accent);
 }
