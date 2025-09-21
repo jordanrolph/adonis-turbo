@@ -31,6 +31,8 @@ type ErrorsBag = {
     E_MAIL_TRANSPORT_ERROR?: string
     E_SESSION_NOT_MUTABLE?: string
     E_SESSION_NOT_READY?: string
+    // Custom defined errors
+    E_WEB_EXCEPTION?: string
     // Allow any other error codes
     [key: string]: string | undefined
 }
@@ -41,9 +43,12 @@ type ValidationErrors = Record<string, string[]>
 // "Old" form input value for a field-specific validation error
 type OldValues = Record<string, string>
 
+type SuccessMessage = string
+
 // Can be accessed in a controller with `getFlashMessages(session)`
 export type FlashMessages = {
     errorsBag?: ErrorsBag
     errors?: ValidationErrors
     oldValues?: OldValues
+    success: SuccessMessage
 }

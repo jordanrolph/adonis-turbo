@@ -9,7 +9,7 @@ export function ServerError(props: ServerErrorProps) {
 
   return (
     <>
-      <h1>{error.code} - Server error</h1>
+      <h1 safe>{error.code} - Server error</h1>
       <p>
         This template is rendered by the
         <a href="http://docs.adonisjs.com/guides/exception-handling#status-pages">

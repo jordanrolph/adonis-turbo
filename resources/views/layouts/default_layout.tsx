@@ -14,7 +14,7 @@ export function DefaultLayout({ pageTitle, children }: DefaultLayoutProps) {
                 <head>
                     <meta charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <title>{pageTitle}</title>
+                    <title safe>{pageTitle}</title>
 
                     {/* Turbo setup */}
                     <meta name="turbo-cache-control" content="no-cache" />

@@ -14,6 +14,7 @@ import router from '@adonisjs/core/services/router'
 const HomeController = () => import('#controllers/home_controller')
 const SessionController = () => import('#controllers/session_controller')
 const RegistrationController = () => import('#controllers/registration_controller')
+const UserSettingsController = () => import('#controllers/user_settings_controller')
 
 // Define the routes
 router.get('/', [HomeController, "show"]).use(middleware.auth()).as('home.show')
@@ -28,4 +29,7 @@ router
     .use(middleware.guest())
     .as('auth.registration.show')
 router.post('/signup', [RegistrationController, 'store']).as('auth.registration.store')
+
+router.get('/settings', [UserSettingsController, 'show']).use(middleware.auth()).as('user_settings.show')
+router.post('/settings', [UserSettingsController, 'store']).use(middleware.auth()).as('user_settings.store')
 

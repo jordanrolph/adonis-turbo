@@ -12,22 +12,22 @@ export function Login({ flashMessages }: LoginProps) {
 
     return (
         <>
-            {errorsBag?.E_INVALID_CREDENTIALS ?? (
+            {errorsBag?.E_INVALID_CREDENTIALS ? (
                 <p safe>{errorsBag?.E_INVALID_CREDENTIALS}</p>
-            )}
+            ) : null}
 
             <form action={route('auth.login.store')} method="post">
                 {csrfField()}
                 <div>
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" value={oldValues?.email ?? ''} />
-                    {errors?.email && <p>{errors.email}</p>}
+                    <input safe type="email" name="email" id="email" value={oldValues?.email ?? ''} />
+                    {errors?.email ? <p safe>{errors.email}</p> : null}
                 </div>
 
                 <div>
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" />
-                    {errors?.password && <p>{errors.password}</p>}
+                    {errors?.password ? <p safe>{errors.password}</p> : null}
                 </div>
 
                 <div>

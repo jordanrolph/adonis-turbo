@@ -11,9 +11,9 @@ export function Signup({ flashMessages }: SignupProps) {
 
     return (
         <>
-            {errorsBag?.E_INVALID_CREDENTIALS ?? (
+            {errorsBag?.E_INVALID_CREDENTIALS ? (
                 <p safe>{errorsBag?.E_INVALID_CREDENTIALS}</p>
-            )}
+            ) : null}
 
             <form action={route('auth.registration.store')} method="post">
                 {csrfField()}
@@ -21,19 +21,19 @@ export function Signup({ flashMessages }: SignupProps) {
                 <div>
                     <label for="fullName">Full Name</label>
                     <input type="text" name="fullName" id="fullName" value={oldValues?.fullName ?? ''} />
-                    {errors?.fullName ?? <p>{errors?.fullName}</p>}
+                    {errors?.fullName ? <p safe>{errors?.fullName}</p> : null}
                 </div>
 
                 <div>
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" value={oldValues?.email ?? ''} />
-                    {errors?.email ?? <p>{errors?.email}</p>}
+                    {errors?.email ? <p safe>{errors?.email}</p> : null}
                 </div>
 
                 <div>
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" />
-                    {errors?.password ?? <p>{errors?.password}</p>}
+                    {errors?.password ? <p safe>{errors?.password}</p> : null}
                 </div>
                 <div>
                     <button type="submit">Sign up</button>
