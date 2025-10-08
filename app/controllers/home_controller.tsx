@@ -1,5 +1,5 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { Home } from '#views/home'
+import { Home } from '#views/pages/home'
 import { DefaultLayout } from '#layouts/default_layout'
 import { route } from '#helpers/route_helper'
 import { csrfField } from '#helpers/csrf_field_helper'

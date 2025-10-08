@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { getFlashMessages } from '#controller_helpers/get_flash_messages'
 import { DefaultLayout } from '#layouts/default_layout'
-import { Settings } from '#views/settings'
+import { Settings } from '#views/pages/settings'
 import { updateUserDetailsValidator } from '#validators/user_settings'
 
 

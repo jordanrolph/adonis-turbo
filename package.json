@@ -33,7 +33,7 @@
     "#start/*": "./start/*.js",
     "#config/*": "./config/*.js",
     "#types/*": "./types/*.js",
-    "#views/*": "./resources/views/pages/*.js",
+    "#views/*": "./resources/views/*.js",
     "#layouts/*": "./resources/views/layouts/*.js",
     "#helpers/*": "./resources/views/helpers/*.js",
     "#components/*": "./resources/views/components/*.js"

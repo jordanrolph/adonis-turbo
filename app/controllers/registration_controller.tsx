@@ -1,7 +1,7 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { errors } from '@adonisjs/auth'
 import User from '#models/user'
-import { Signup } from '#views/signup'
+import { Signup } from '#views/pages/signup'
 import { DefaultLayout } from '#layouts/default_layout'
 import { signUpValidator } from '#validators/registration'
 import { getFlashMessages } from '#controller_helpers/get_flash_messages'

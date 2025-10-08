@@ -1,6 +1,6 @@
 import { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
-import { Login } from '#views/login'
+import { Login } from '#views/pages/login'
 import { DefaultLayout } from '#layouts/default_layout'
 import { loginValidator } from '#validators/session'
 import { getFlashMessages } from '#controller_helpers/get_flash_messages'
